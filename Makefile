@@ -21,6 +21,10 @@ stop:
 .PHONY: down
 down: stop 
 
+# restart dev service
+.PHONY: restart
+restart: stop start
+
 # rebuild go-container
 .PHONY: rebuildgo
 rebuildgo: 
