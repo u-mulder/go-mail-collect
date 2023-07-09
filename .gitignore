@@ -20,5 +20,6 @@
 # Go workspace file
 go.work
 
-# tmp data folder
+# tmp data and cache folders
 tmp
+.cache
