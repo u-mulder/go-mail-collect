@@ -1,0 +1,39 @@
+version: '3.6'
+
+# volumes:
+#   redis:
+
+services:
+  go:
+    build:
+      context: .
+      dockerfile: docker/go/Dockerfile.dev
+    environment:
+      GOPATH: /go/
+    #   GOCACHE: /go/.cache
+    volumes:
+      - ./:/mailcollector/
+      - ./.cache/:/go/
+    working_dir: /mailcollector
+    ports:
+      - '8081:80'
+    command: go run cmd/main.go
+    # command: go get github.com/labstack/echo/v4
+    # command: go get github.com/rs/zerolog/log
+    # links:
+    # - postgres
+    # - redis
+
+    # redis:
+    #   image: redis:6.2-alpine
+    #   volumes:
+    #     - "redis:/var/lib/redis"
+
+  postgres:
+    image: postgres:14.8
+    environment:
+      POSTGRES_USER: mailcollector
+      POSTGRES_PASSWORD: mailcollector
+      POSTGRES_DATABASE: mailcollector
+    ports:
+      - ${POSTGRES_ADDRESS:-127.0.0.1:5435}:${POSTGRES_PORT:-5432}
