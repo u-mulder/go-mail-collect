@@ -22,4 +22,6 @@ go.work
 
 # tmp data and cache folders
 tmp
+_tmp
 .cache
+.idea
