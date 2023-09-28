@@ -1,25 +1,26 @@
 # Variables
 DOCKER=docker
 DOCKER_COMPOSE=docker-compose
-GO_CONTAINER=go
+DOCKER_COMPOSE_FILE=docker-compose.dev.yml
+#GO_CONTAINER=go
 
 # start dev-service
 .PHONY: start
-start: 
-	@echo "==> Startng go service" 
-	@${DOCKER_COMPOSE} up -d
+start:
+	@echo "==> Startng go service"
+	@${DOCKER_COMPOSE} -f ${DOCKER_COMPOSE_FILE} up -d
 
 .PHONY: up
-up: start 
+up: start
 
 # stop dev service
 .PHONY: stop
-stop: 
-	@echo "==> Stopping go service" 
-	@${DOCKER_COMPOSE} down
+stop:
+	@echo "==> Stopping go service"
+	@${DOCKER_COMPOSE} -f ${DOCKER_COMPOSE_FILE} down
 
 .PHONY: down
-down: stop 
+down: stop
 
 # restart dev service
 .PHONY: restart
@@ -39,8 +40,8 @@ logs:
 
 # List of containers
 .PHONY: contls
-contls: 
-	@echo "==> List running containers" 
+contls:
+	@echo "==> List of running containers"
 	@${DOCKER} container ls
 
 # More commands can be included here
