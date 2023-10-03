@@ -20,6 +20,8 @@
 # Go workspace file
 go.work
 
+local.mk
+
 # tmp data and cache folders
 tmp
 _tmp
